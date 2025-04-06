@@ -1,154 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DrivePlyr</title>
-    <link rel="stylesheet" href="https://driveplyr.sh20raj.repl.co/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"/>
-  <link rel="icon" href="https://raw.githubusercontent.com/SH20RAJ/DrivePlyr/main/drive-logo.png">
-    <meta name="description" content="Google Drive Proxy Video Player with Many Powerful HTML5 Players Hidden ID and Many Features 🚀">
-
-
-<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
-<meta name='google-adsense-platform-domain' content='blogspot.com'/>
-</head>
-<body>
-<div class="subscribe-box"> 
-  <img src="https://raw.githubusercontent.com/SH20RAJ/DrivePlyr/main/drive-logo.png" alt="drive-logo.png">
-  <h2>DrivePlyr</h2>
-  <div class="subscribe">
-    <input type="text" placeholder="Enter Your Drive Video Link*" autocomplete="on" id="videourl" required="required"/>
-    <input type="text" placeholder="Poster URL (optional)" autocomplete="on" id="posterurl"/>
-    <input type="text" placeholder="Video Title (optional)" autocomplete="on" id="videotitle"/>
-
-    
-    <button onclick="get()"> <span>GET</span></button>
-    </div>
-</div>
-  <div class="container">
-    <div class="card" style="width:80%">
-    <div class="card-body">
-      <h4 class="card-title">Plyr</h4>
-      <p class="card-text">
-        
-<iframe id="plyr" width="560" height="315" 
-scrolling="no"
-src="https://driveplyr.sh20raj.repl.co/plyr.html" 
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-          
-      
-      </p>
-      <a href="#" onclick="embedplyr()" class="card-link">Embed Code</a>
-      <a href="#" onclick="openplyr()" class="card-link">Open</a>
-    </div>
-    </div>
-
-    <div class="card" style="width:80%">
-    <div class="card-body">
-      <h4 class="card-title">vLiteJS</h4>
-      <p class="card-text">
-        
-      
-<iframe id="vlitejs" width="560" height="315" 
-scrolling="no"
-src="https://driveplyr.sh20raj.repl.co/vlitejs.html" 
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-
-
-        
-      </p>
-      <a href="#" onclick="embedvlitejs()" class="card-link">Embed Code</a>
-      <a href="#" onclick="openvlitejs()" class="card-link">Open</a>
-    </div>
-    </div>
-
-    <div class="card" style="width:80%">
-    <div class="card-body">
-      <h4 class="card-title">Fluid Player</h4>
-      <p class="card-text">
-        
-<iframe id="fluid" width="560" height="315" 
-scrolling="no"
-src="https://driveplyr.sh20raj.repl.co/fluid.html" 
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-          
-      
-      </p>
-      <a href="#" onclick="embedfluid()" class="card-link">Embed Code</a>
-      <a href="#" onclick="openfluid()" class="card-link">Open</a>
-    </div>
-    </div>
-
-    <div class="card" style="width:80%">
-    <div class="card-body">
-      <h4 class="card-title">Afterglow</h4>
-      <p class="card-text">
-        
-      
-<iframe id="afterglow" width="560" height="315" 
-scrolling="no"
-src="https://driveplyr.sh20raj.repl.co/afterglow.html" 
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-
-
-        
-      </p>
-      <a href="#" onclick="embedafterglow()" class="card-link">Embed Code</a>
-      <a href="#" onclick="openafterglow()" class="card-link">Open</a>
-    </div>
-    </div>
-
-    <div class="card" style="width:80%">
-    <div class="card-body">
-      <h4 class="card-title">Mediaelements</h4>
-      <p class="card-text">
-        
-      
-<iframe id="mediaelements" width="560" height="315" 
-scrolling="no"
-src="https://driveplyr.sh20raj.repl.co/mediaelements.html" 
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-
-
-        
-      </p>
-      <a href="#" onclick="embedmediaelements()" class="card-link">Embed Code</a>
-      <a href="#" onclick="openmediaelements()" class="card-link">Open</a>
-    </div>
-    </div>
-    
-  </div>
-
-  <footer>
-    <h3><a href="https://linktr.ee/cxdiin">HANCLEY PLAYER DRIVE</a></h3>
-    <h5>usem links vídeo de drive</h5>
-  </footer>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto de Filmes</title>
   <style>
-    footer{
-      position: relative;
-      bottom: 0;
+    /* Fundo com degradê vermelho */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(45deg, #808080, #808080);
+      color: #fff;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); /* Tamanho ajustável */
+      justify-content: center;
+      gap: 20px;
       padding: 20px;
-      background: black;
+    }
+    .card {
+      background: #2c2c2c;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
       text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05); /* Efeito de destaque no hover */
+    }
+    .card img {
+      width: 100%;
+      height: auto; /* Mantém proporção da imagem */
       display: block;
-      color: white;
+    }
+    .card p {
+      margin: 0;
+      padding: 10px 5px;
+      font-size: 0.9em;
+      font-weight: bold;
+      color: #fff;
+      background-color: #808080; /* Fundo do texto */
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #808080;
+    }
+    header h1 {
+      margin: 0;
     }
   </style>
-  <script src="https://driveplyr.sh20raj.repl.co/script.js"></script>
-
+</head>
+<body>
+  <!-- Cabeçalho do site -->
+  <header>
+    <h1>TODOS OS FILMES</h1>
+  </header>
   
+  <!-- Container organizado com cards no estilo Netflix -->
+  <div class="container">
+    <!-- Exemplo de filme -->
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=134OjJxRNDJq5BIYC1llTxl6Zg8Nip-BQ')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRegX_dce6d2iI7SXlWb0Fma_798uv_p9-y6fOcdnaV_OF6pG5ueZW4qxU&s=10" alt="Capa do Filme">
+      <p>Corvo Branco</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1vh-Cn9pVsHywRq2kYvfdxnWJ0j6AkXWy')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtAV5AVEcRUyyRqK-wfC5cQhQveWDxm_5YWkhSf8vVmRK-MphfTm9vW0Ie&s=10" alt="Capa do Filme">
+      <p>Shazam 2023</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1vVLvD3wNzTd8RjWL_FqArB1wwTlU-vWh')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT6EK8pGu_08GJr9axH8Jof4ke093au6JGNWnEJCu2tPEIKdJ81YdkkLI&s=10" alt="Capa do Filme">
+      <p>Shazam 2019</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1maMi3taqzOw8_4MBdZUtqH4PjyQXzCzs')">
+      <img src="https://br.web.img2.acsta.net/pictures/23/05/25/17/25/4144427.jpg" alt="Capa do Filme">
+      <p>O Demonio dos Mares</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1eCq2wGgh4C6JSrh3TLf_x49OjLfMKEWn')">
+      <img src="https://media.fstatic.com/saP2RaBoZw3pztNiPfXqrBK7Qus=/322x478/smart/filters:format(webp)/media/movies/covers/2023/09/cats_wMyvcUl.jpg" alt="Capa do Filme">
+      <p>Um Climax Entre Nós</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1KN7yNBSXFT8xACBLnZVtfCJzhiX2Mw5n')">
+      <img src="https://br.web.img3.acsta.net/pictures/21/04/08/16/25/5256018.jpg" alt="Capa do Filme">
+      <p>A Lenda de Thor</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1BuBw_cxA61A4tlIad5zhfet5p7-gIV3o')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6viQ0PwfKzyTFK5Ahlj8ppa7MUlndohQ3woD1Hzuy2JXdC0r9dyIC36h&s=10" alt="Capa do Filme">
+      <p>Cidade dos Demonios</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1qc2YEfs8DsTJMSgiFhuNiTFkQwSgqGUd')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRE-QoY9ThU-FySnV242QkL_dx_jz4WKoaNdHQ-_xAhWslfJFED0dRVtQa&s=10" alt="Capa do Filme">
+      <p>The Princess</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1S_fqsdNZwpvfYkqwjcz6Dyi1MTlLhqyb')">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwbUFjMSFXUKaTJoHgyDmgjLDYFZwpHKeI5U4wqc07t2so4vy8pQEB1mWD&s=10" alt="Capa do Filme">
+      <p>Homem Aranha</p>
+    </div>
+    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=16_kOvHSv0uIggzLAORFMVWnte9PUV5Gs')">
+      <img src="https://upload.wikimedia.org/wikipedia/pt/3/3b/Deadpool_2016.jpg" alt="Capa do Filme">
+      <p>DeadPool</p>
+    </div>
+    <!-- Adicione mais cartões aqui -->
+  </div>
+
+  <script>
+    // Função para executar o player do Gdrive
+    function playMovie(link) {
+      window.open(link, '_blank');
+    }
+  </script>
 </body>
 </html>
-
