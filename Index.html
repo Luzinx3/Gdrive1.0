@@ -1,115 +1,389 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projeto de Filmes</title>
-  <style>
-    /* Fundo com degradê vermelho */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVLIVRE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(45deg, #808080, #808080);
-      color: #fff;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); /* Tamanho ajustável */
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: #2c2c2c;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: scale(1.05); /* Efeito de destaque no hover */
-    }
-    .card img {
-      width: 100%;
-      height: auto; /* Mantém proporção da imagem */
-      display: block;
-    }
-    .card p {
-      margin: 0;
-      padding: 10px 5px;
-      font-size: 0.9em;
-      font-weight: bold;
-      color: #fff;
-      background-color: #808080; /* Fundo do texto */
-    }
-    header {
-      text-align: center;
-      padding: 20px;
-      background-color: #808080;
-    }
-    header h1 {
-      margin: 0;
-    }
-  </style>
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #292929;
+            color: #ecf0f1; 
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .navbar {
+            background-color: #292929;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ecf0f1;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #3498db; 
+        }
+
+        #player-container {
+            margin-top: 60px;
+            padding: 20px;
+        }
+
+        #player {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .search-channel {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-channel input {
+            height: 50px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: 1px solid #3498db; 
+            padding: 0 20px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #292929; 
+            color: #ecf0f1; 
+        }
+
+        .search-channel input::placeholder {
+            color: #95a5a6; 
+        }
+
+        .list-channels {
+            max-height: calc(100vh - 130px);
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .channel {
+            background-color: #292929; 
+            border: 1px solid #2c3e50;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #ecf0f1;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .channel:hover {
+            background-color: #2c3e50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .channel img {
+            max-width: 60px;
+            margin-right: 15px;
+        }
+
+        .channel .name {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f
+            ; 
+            color: #ecf0f1;
+            padding: 20px 0;
+            border-top: 1px solid #2c3e50;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            #player {
+                height: 250px;
+            }
+
+            .list-channels {
+                max-height: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Cabeçalho do site -->
-  <header>
-    <h1>TODOS OS FILMES</h1>
-  </header>
-  
-  <!-- Container organizado com cards no estilo Netflix -->
-  <div class="container">
-    <!-- Exemplo de filme -->
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=134OjJxRNDJq5BIYC1llTxl6Zg8Nip-BQ')">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRegX_dce6d2iI7SXlWb0Fma_798uv_p9-y6fOcdnaV_OF6pG5ueZW4qxU&s=10" alt="Capa do Filme">
-      <p>Corvo Branco</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1vh-Cn9pVsHywRq2kYvfdxnWJ0j6AkXWy')">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtAV5AVEcRUyyRqK-wfC5cQhQveWDxm_5YWkhSf8vVmRK-MphfTm9vW0Ie&s=10" alt="Capa do Filme">
-      <p>Shazam 2023</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1vVLvD3wNzTd8RjWL_FqArB1wwTlU-vWh')">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT6EK8pGu_08GJr9axH8Jof4ke093au6JGNWnEJCu2tPEIKdJ81YdkkLI&s=10" alt="Capa do Filme">
-      <p>Shazam 2019</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1maMi3taqzOw8_4MBdZUtqH4PjyQXzCzs')">
-      <img src="https://br.web.img2.acsta.net/pictures/23/05/25/17/25/4144427.jpg" alt="Capa do Filme">
-      <p>O Demonio dos Mares</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1eCq2wGgh4C6JSrh3TLf_x49OjLfMKEWn')">
-      <img src="https://media.fstatic.com/saP2RaBoZw3pztNiPfXqrBK7Qus=/322x478/smart/filters:format(webp)/media/movies/covers/2023/09/cats_wMyvcUl.jpg" alt="Capa do Filme">
-      <p>Um Climax Entre Nós</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1KN7yNBSXFT8xACBLnZVtfCJzhiX2Mw5n')">
-      <img src="https://br.web.img3.acsta.net/pictures/21/04/08/16/25/5256018.jpg" alt="Capa do Filme">
-      <p>A Lenda de Thor</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1BuBw_cxA61A4tlIad5zhfet5p7-gIV3o')">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx6viQ0PwfKzyTFK5Ahlj8ppa7MUlndohQ3woD1Hzuy2JXdC0r9dyIC36h&s=10" alt="Capa do Filme">
-      <p>Cidade dos Demonios</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1qc2YEfs8DsTJMSgiFhuNiTFkQwSgqGUd')">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRE-QoY9ThU-FySnV242QkL_dx_jz4WKoaNdHQ-_xAhWslfJFED0dRVtQa&s=10" alt="Capa do Filme">
-      <p>The Princess</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=1S_fqsdNZwpvfYkqwjcz6Dyi1MTlLhqyb')">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwbUFjMSFXUKaTJoHgyDmgjLDYFZwpHKeI5U4wqc07t2so4vy8pQEB1mWD&s=10" alt="Capa do Filme">
-      <p>Homem Aranha</p>
-    </div>
-    <div class="card" onclick="playMovie('https://playerdevideo.netlify.app/?player=fluidplayer&provider=gdrive&format=video%2Fmp4&link=16_kOvHSv0uIggzLAORFMVWnte9PUV5Gs')">
-      <img src="https://upload.wikimedia.org/wikipedia/pt/3/3b/Deadpool_2016.jpg" alt="Capa do Filme">
-      <p>DeadPool</p>
-    </div>
-    <!-- Adicione mais cartões aqui -->
-  </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2HGgYnH03hdo05cTFrnMV6DtSxcXZ8cTuWNoI6jYuQFei0KW4_ZTYgL47&s=10" alt="Logo">
+        </a>
+    </nav>
+    
+    <section id="player-container" class="container">
+        <div class="row justify-content-center">
+            <div id="player" class="col-lg-8 col-md-12 p-0">
+                <iframe id="videoPlayer" src="" name="Player" allow="encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-12 p-0">
+                <section class="search-channel">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Buscar Canal">
+                </section>
+                <section class="list-channels">
+                    <!-- Canais adicionados diretamente aqui -->
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/124949.m3u8">
+                        <img src="https://logos.imperioapps.xyz/Premiere_Clubes.png" alt="Premiere Clubs">
+                        <div class="name">Premiere Clubs</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/124927.m3u8">
+                        <img src="https://logos.imperioapps.xyz/Premiere_Clubes.png" alt="Premiere 2">
+                        <div class="name">Premiere 2</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/124930.m3u8">
+                        <img src="https://logos.imperioapps.xyz/Premiere_Clubes.png" alt="Premiere 3">
+                        <div class="name">Premiere 3</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/124933.m3u8">
+                        <img src="https://logos.imperioapps.xyz/Premiere_Clubes.png" alt="Premiere 4">
+                        <div class="name">Premiere 4</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/124938.m3u8">
+                        <img src="https://logos.imperioapps.xyz/Premiere_Clubes.png" alt="Premiere5">
+                        <div class="name">Premiere 5</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/124940.m3u8">
+                        <img src="https://logos.imperioapps.xyz/Premiere_Clubes.png" alt="Premiere 6">
+                        <div class="name">Premiere 6</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/124943.m3u8">
+                        <img src="https://logos.imperioapps.xyz/Premiere_Clubes.png" alt="Premiere 7">
+                        <div class="name">Premiere 7</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/124951.m3u8">
+                        <img src="https://logos.imperioapps.xyz/Premiere_Clubes.png" alt="Premiere Mosaico">
+                        <div class="name">Premiere Mosaico</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/122768.m3u8">
+                        <img src="https://logos.imperioapps.xyz/NOSSO_FUTEBOL.png" alt="Nosso Futebol 1">
+                        <div class="name">Nosso Futebol 1</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/122769.m3u8">
+                        <img src="https://logos.imperioapps.xyz/NOSSO_FUTEBOL.png" alt="Nosso Futebol 2">
+                        <div class="name">Nosso Futebol 2</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/122770.m3u8">
+                        <img src="https://logos.imperioapps.xyz/NOSSO_FUTEBOL.png" alt="Nosso Futebol 3">
+                        <div class="name">Nosso Futebol 3</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/122771.m3u8">
+                        <img src="https://logos.imperioapps.xyz/NOSSO_FUTEBOL.png" alt="Nosso Futebol 4">
+                        <div class="name">Nosso Futebol 4</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/123643.m3u8">
+                        <img src="https://logos.imperioapps.xyz/SPORTV.png" alt="SporTv 1">
+                        <div class="name">SporTv 1</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/123628.m3u8">
+                        <img src="https://logos.imperioapps.xyz/SPORTV.png" alt="SporTv 2">
+                        <div class="name">SporTv 2</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/123634.m3u8">
+                        <img src="https://logos.imperioapps.xyz/SPORTV.png" alt="SporTv 3">
+                        <div class="name">SporTv 3</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/108860.m3u8">
+                        <img src="http://logos.imperioapps.xyz/ESPN.png" alt="Espn 1">
+                        <div class="name">Espn 1</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/108839.m3u8">
+                        <img src="http://logos.imperioapps.xyz/ESPN.png" alt="Espn 2">
+                        <div class="name">Espn 2</div>
+                    </div>
+                      <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/108841.m3u8">
+                        <img src="http://logos.imperioapps.xyz/ESPN.png" alt="Espn 3">
+                        <div class="name">Espn 3</div>
+                    </div>
+                      <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/108849.m3u8">
+                        <img src="http://logos.imperioapps.xyz/ESPN.png" alt="Espn 4">
+                        <div class="name">Espn 4</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/108851.m3u8">
+                        <img src="http://logos.imperioapps.xyz/ESPN.png" alt="Espn 5">
+                        <div class="name">Espn 5</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/108854.m3u8">
+                        <img src="http://logos.imperioapps.xyz/ESPN.png" alt="Espn 6">
+                        <div class="name">Espn 6</div>
+                    </div>
+                      <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/122904.m3u8">
+                        <img src="https://logos.imperioapps.xyz/COMBATE.png" alt="Combate">
+                        <div class="name">Combate</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/122909.m3u8">
+                        <img src="https://logos.imperioapps.xyz/UFC_FIGHT_PASS.png" alt="UFC Fight 1">
+                        <div class="name">UFC Fight 1</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/122910.m3u8">
+                        <img src="https://logos.imperioapps.xyz/UFC_FIGHT_PASS.png" alt="UFC Fight 2">
+                        <div class="name">UFC Fight 2</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/251925.m3u8">
+                        <img src="https://logos.imperioapps.xyz/UFC_FIGHT_PASS.png" alt="UFC Fight 3">
+                        <div class="name">UFC Fight 3</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/252418.m3u8">
+                        <img src="https://logos.imperioapps.xyz/PRIME_VIDEO.png" alt="Prime Video 1">
+                        <div class="name">Prime Video 1</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/252419.m3u8">
+                        <img src="https://logos.imperioapps.xyz/PRIME_VIDEO.png" alt="Prime Video 2">
+                        <div class="name">Prime Video 2</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/252420.m3u8">
+                        <img src="https://logos.imperioapps.xyz/PRIME_VIDEO.png" alt="Prime Video 3">
+                        <div class="name">Prime Video 3</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/150706.m3u8">
+                        <img src="https://logos.imperioapps.xyz/PRIME_VIDEO.png" alt="Prime Video 4">
+                        <div class="name">Prime Video 4</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/150707.m3u8">
+                        <img src="https://logos.imperioapps.xyz/PRIME_VIDEO.png" alt="Prime Video 5">
+                        <div class="name">Prime Video 5</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/252975.m3u8">
+                        <img src="https://logos.imperioapps.xyz/DISNEY+.png" alt="Disney+ 1">
+                        <div class="name">Disney+ 1</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/252976.m3u8">
+                        <img src="https://logos.imperioapps.xyz/DISNEY+.png" alt="Disney+ 2">
+                        <div class="name">Disney+ 2</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/153078.m3u8">
+                        <img src="https://logos.imperioapps.xyz/DISNEY+.png" alt="Disney+ 3">
+                        <div class="name">Disney+ 3</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/153079.m3u8">
+                        <img src="https://logos.imperioapps.xyz/DISNEY+.png" alt="Disney+ 4">
+                        <div class="name">Disney+ 4</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/153080.m3u8">
+                        <img src="https://logos.imperioapps.xyz/DISNEY+.png" alt="Disney+ 5">
+                        <div class="name">Disney+ 5</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/153086.m3u8">
+                        <img src="https://logos.imperioapps.xyz/DISNEY+.png" alt="Disney+ 6">
+                        <div class="name">Disney+ 6</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/153087.m3u8">
+                        <img src="https://logos.imperioapps.xyz/DISNEY+.png" alt="Disney+ 7">
+                        <div class="name">Disney+ 7</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/153088.m3u8">
+                        <img src="https://logos.imperioapps.xyz/DISNEY+.png" alt="Disney+ 8">
+                        <div class="name">Disney+ 8</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152741.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/0ff778e1caf9ba1ea09a7c3b2f59e5c6.png" alt="MAX 1">
+                        <div class="name">MAX 1</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/252979.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/0ff778e1caf9ba1ea09a7c3b2f59e5c6.png" alt="MAX 2">
+                        <div class="name">MAX 2</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152752.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/0ff778e1caf9ba1ea09a7c3b2f59e5c6.png" alt="MAX 3">
+                        <div class="name">MAX 3</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152753.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/0ff778e1caf9ba1ea09a7c3b2f59e5c6.png" alt="MAX 4">
+                        <div class="name">MAX 4</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152754.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/0ff778e1caf9ba1ea09a7c3b2f59e5c6.png" alt="MAX 5">
+                        <div class="name">MAX 5</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152755.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/0ff778e1caf9ba1ea09a7c3b2f59e5c6.png" alt="MAX 6">
+                        <div class="name">MAX 6</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152738.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/0ff778e1caf9ba1ea09a7c3b2f59e5c6.png" alt="MAX 7">
+                        <div class="name">MAX 7</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152739.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/0ff778e1caf9ba1ea09a7c3b2f59e5c6.png" alt="MAX 8">
+                        <div class="name">MAX 8</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152570.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/e581b57f4a2a5e544287e4300c286a39.png" alt="Paramount+ 1">
+                        <div class="name">Paramount+ 1</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152571.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/e581b57f4a2a5e544287e4300c286a39.png" alt="Paramount+ 2">
+                        <div class="name">Paramount+ 2</div>
+                    </div>
+                    <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152572.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/e581b57f4a2a5e544287e4300c286a39.png" alt="Paramount+ 3">
+                        <div class="name">Paramount+ 3</div>
+                    </div>
+                   <div class="channel" data-url="http://loboplay.shop/live/Tourobox1-Z6qaay0yv8/kTmHVL27gw/152573.m3u8">
+                        <img src="http://aguacomgas.shop:80/images/e581b57f4a2a5e544287e4300c286a39.png" alt="Paramount+ 4">
+                        <div class="name">Paramount+ 4</div>
+                    </div> 
+                </section>
+            </div>
+        </div>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.list-channels').addEventListener('click', function(e) {
+                if (e.target.closest('.channel')) {
+                    var url = e.target.closest('.channel').getAttribute('data-url');
+                    document.getElementById('videoPlayer').src = url;
+                }
+            });
 
-  <script>
-    // Função para executar o player do Gdrive
-    function playMovie(link) {
-      window.open(link, '_blank');
-    }
-  </script>
+            document.getElementById('searchInput').addEventListener('input', function() {
+                var searchTerm = this.value.toLowerCase();
+                var channels = document.querySelectorAll('.channel');
+                
+                channels.forEach(function(channel) {
+                    var channelName = channel.querySelector('.name').textContent.toLowerCase();
+                    if (channelName.includes(searchTerm)) {
+                        channel.style.display = 'flex';
+                    } else {
+                        channel.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
